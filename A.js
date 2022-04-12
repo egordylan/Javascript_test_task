@@ -2,29 +2,23 @@
 'use strict';
 
 const fs = require('fs')
-const input = fs.readFileSync('input.txt', 'utf-8')
+const input = fs.readFileSync('D:\/WarGamingForge\/Javascript_test_task\/input.txt', 'utf-8')
 
 
-let stringToSplit = '';
-let result = [];
+const result = [];
 // string to array
-function splitString(string, newarray){
+function splitString(string, newArray){
   let array = string.split(',');
   for (let n of array){
-      let num = parseInt(n, 10);
-      newarray.push(num);}
-  return newarray;
+      //let num = parseInt(n, 10);
+      newArray.push(Number(n));}
+  return newArray;
 }
 
-splitString(input, result);
-
-
-result.sort((a, b) => a - b);
-
-
 // only unique numbers
-let uniqueNums = [];
+const uniqueNums = [];
 function uniqueNumsArray(array, newArray){
+  array.sort((a, b) => a - b);
   for  (let num of array){
     if (!newArray.includes(num)){
       newArray.push(num);}
@@ -32,14 +26,11 @@ function uniqueNumsArray(array, newArray){
   return newArray;
 }
 
-uniqueNumsArray(result, uniqueNums);
 
+const resultArray = [];
+const arrayToString = [];
 
-let resultArray = [];
-let arrayToString = [];
-let strClear = '';
-
-function solve(numbers, result, string, array){
+function solve(numbers, result, array){
   for (let i = 0; i < numbers.length; i++){
     if (numbers[i] === numbers[0]){
       result.push(numbers[i]);}
@@ -55,14 +46,18 @@ function solve(numbers, result, string, array){
     else if (numbers[i] === numbers[numbers.length - 1]){
       result.push(numbers[numbers.length - 1]);}}
   array = result.join();
-  string = array.replace(/,-,/g, '-');
+  let string = array.replace(/,-,/g, '-');
 return string;}
 
+splitString(input, result);
+uniqueNumsArray(result, uniqueNums);
 
-let filePath = 'output.txt'
+const filePath = 'output.txt'
 
-try {fs.writeFileSync(filePath, solve(uniqueNums, resultArray, strClear, arrayToString));
+
+try {fs.writeFileSync(filePath, solve(uniqueNums, resultArray, arrayToString));
   console.log('DONE');
+  //console.log(String(resultArray));
 } catch (Error) {
   console.log('Error of output', Error);
 }
