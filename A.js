@@ -1,4 +1,3 @@
-
 'use strict';
 
 const fs = require('fs')
@@ -6,11 +5,11 @@ const input = fs.readFileSync('D:\/WarGamingForge\/Javascript_test_task\/input.t
 
 
 const result = [];
+
 // string to array
 function splitString(string, newArray){
   let array = string.split(',');
   for (let n of array){
-      //let num = parseInt(n, 10);
       newArray.push(Number(n));}
   return newArray;
 }
@@ -52,8 +51,8 @@ return string;}
 splitString(input, result);
 uniqueNumsArray(result, uniqueNums);
 
-const filePath = 'output.txt'
 
+const filePath = 'output.txt'
 
 try {fs.writeFileSync(filePath, solve(uniqueNums, resultArray, arrayToString));
   console.log('DONE');
